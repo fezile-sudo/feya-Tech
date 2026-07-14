@@ -16,6 +16,7 @@ function Product() {
     <section className="products-section py-5">
 
       <Container>
+
         <div className="text-center mb-5">
           <h1 className="display-5 fw-bold">
             My Products
@@ -23,26 +24,35 @@ function Product() {
         </div>
 
         <Row>
-        {displayedProducts.map((product) => (
-        <Col lg="4" md="6" sm="12" className="mb-4" key={product.id}>
-        <ProductCard product={product} />
-        </Col>
-        ))}
+          {displayedProducts.map((product) => (
+            <Col
+              lg="4"
+              md="6"
+              sm="12"
+              className="mb-4"
+              key={product.id}
+            >
+              <ProductCard product={product} />
+            </Col>
+          ))}
         </Row>
 
         {products.length > 4 && (
-
           <div className="text-center mt-4">
-
-            <Button color="primary"  size="lg" onClick={() => setShowAll(!showAll)}>
+            <Button
+              color="primary"
+              size="lg"
+              onClick={() => setShowAll(!showAll)}
+            >
               {showAll ? "Show Less" : "Show More"}
             </Button>
-        </div>
-
+          </div>
         )}
-    </Container>
- </section>
+
+      </Container>
+
+    </section>
   );
 }
 
-export default Product ;
+export default Product;

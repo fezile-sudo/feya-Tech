@@ -12,3 +12,37 @@
     object-fit: cover;
 }
 
+.product-card {
+    overflow: hidden;
+    transition: all .3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+}
+
+.image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image {
+    transition: transform .4s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.add-cart-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: .3s ease;
+}
+
+.product-card:hover .add-cart-btn {
+    opacity: 1;
+}
