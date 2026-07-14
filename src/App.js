@@ -1,14 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-import { Navbar, NavbarBrand } from 'reactstrap';
-import Main from './components/MainComponent';
-
+import "./App.css";
+import Main from "./components/MainComponent";
+import Cart from "./components/Cart";
 
 function App() {
   return (
-     <div className="App">
-        <Main />
-      </div>
+    <div className="App">
+      <Main />
+      <Cart />
+    </div>
   );
 }
 

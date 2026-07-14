@@ -5,50 +5,47 @@ import {
   CardImg,
   CardTitle,
   CardText,
-  Button
+  Button,
 } from "reactstrap";
 
 import { useCart } from "../../context/CartContext";
 
 function ProductCard({ product }) {
-
   const { addToCart } = useCart();
 
   return (
-    <Card className="product-card h-100 shadow-sm">
+  <Card className="product-card h-100 shadow-sm">
 
-      <div className="image-wrapper">
+  <div className="image-wrapper">
 
-        <CardImg
-          top
-          src={product.image}
-          alt={product.title}
-          className="product-image"
-        />
+    <CardImg
+      top
+      src={product.image}
+      alt={product.title}
+      className="product-image"
+    />
 
-        <Button
-          color="dark"
-          className="add-cart-btn"
-          onClick={() => addToCart(product)}
-        >
-          Add to Cart
-        </Button>
+  </div>
 
-      </div>
+  <Button
+    color="dark"
+    className="add-cart-btn"
+    onClick={() => addToCart(product)}
+  >
+    Add to Cart
+  </Button>
 
-      <CardBody className="d-flex flex-column">
+  <CardBody className="d-flex flex-column">
+    <CardTitle tag="h4" className="fw-bold mb-3">
+      {product.title}
+    </CardTitle>
 
-        <CardTitle tag="h4" className="fw-bold mb-3">
-          {product.title}
-        </CardTitle>
+    <CardText className="text-muted">
+      <strong>R</strong>{product.price}
+    </CardText>
+  </CardBody>
 
-        <CardText className="text-muted">
-          <strong>R</strong>{product.price}
-        </CardText>
-
-      </CardBody>
-
-    </Card>
+</Card>
   );
 }
 
