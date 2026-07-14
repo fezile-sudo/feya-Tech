@@ -1,0 +1,14 @@
+.product-card {
+    border-radius: 15px;
+    transition: .3s;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+}
+
+.product-image {
+    height: 150px;
+    object-fit: cover;
+}
+
