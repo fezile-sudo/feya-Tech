@@ -10,7 +10,7 @@ function Product() {
 
   const displayedProducts = showAll
     ? products
-    : products.slice(0, 3);
+    : products.slice(0, 8);
 
   return (
     <section className="products-section py-5">
@@ -25,13 +25,13 @@ function Product() {
 
         <Row>
           {displayedProducts.map((product) => (
-            <Col lg="4"  md="6" sm="12"  className="mb-4" key={product.id}>
+            <Col lg="3"  md="6" sm="12"  className="mb-4" key={product.id}>
               <ProductCard product={product} />
             </Col>
           ))}
         </Row>
 
-        {products.length > 4 && (
+        {products.length > 7 && (
           <div className="text-center mt-4">
             <Button color="primary" size="lg" onClick={() => setShowAll(!showAll)}>
               {showAll ? "Show Less" : "Show More"}

@@ -11,7 +11,7 @@
 }
 
 .product-image {
-    height: 150px;
+    height: 100px;
     object-fit: cover;
     transition: transform .4s ease;
 }
@@ -33,6 +33,7 @@
     opacity: 0;
     z-index: 5;
     transition: .3s ease;
+    background-color: blueviolet;
 }
 
 .product-card:hover .add-cart-btn {

@@ -65,6 +65,33 @@ const products = [
     image:Rapoo99,
     description:
       "Premium sound quality with long lasting battery life."
+  },
+
+  {
+    id: 7,
+    title: "Apple Magic Keyboard",
+    price: 2000,
+    image: AppleM,
+    description:
+      "A sleek wireless keyboard designed for comfort and productivity."
+  },
+
+  {
+    id: 8,
+    title: "Gaming Mouse",
+    price: 800,
+    image:LogitecM,
+    description:
+      "A high precision gaming mouse with responsive controls."
+  },
+
+  {
+    id: 9,
+    title: "Wireless Headphones",
+    price: 1500,
+    image:Rapoo99,
+    description:
+      "Premium sound quality with long lasting battery life."
   }
 ];
 
