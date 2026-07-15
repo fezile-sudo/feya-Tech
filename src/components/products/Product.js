@@ -25,13 +25,7 @@ function Product() {
 
         <Row>
           {displayedProducts.map((product) => (
-            <Col
-              lg="4"
-              md="6"
-              sm="12"
-              className="mb-4"
-              key={product.id}
-            >
+            <Col lg="4"  md="6" sm="12"  className="mb-4" key={product.id}>
               <ProductCard product={product} />
             </Col>
           ))}
@@ -39,11 +33,7 @@ function Product() {
 
         {products.length > 4 && (
           <div className="text-center mt-4">
-            <Button
-              color="primary"
-              size="lg"
-              onClick={() => setShowAll(!showAll)}
-            >
+            <Button color="primary" size="lg" onClick={() => setShowAll(!showAll)}>
               {showAll ? "Show Less" : "Show More"}
             </Button>
           </div>

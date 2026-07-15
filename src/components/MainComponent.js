@@ -1,7 +1,7 @@
 import React from "react";
 import Product from "./products/Product";
 import NavBar from "./Navbar";
-
+import Cart from "../components/Cart";
 
 const Main = () => {
 
@@ -9,7 +9,7 @@ const Main = () => {
     <div>
 
       <NavBar />
-
+      <NavBar />
       <Product />
 
     </div>

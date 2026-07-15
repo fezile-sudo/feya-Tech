@@ -12,80 +12,60 @@ import TrustG from "../../assets/images/Trust GXT.webp";
 const products = [
   {
     id: 1,
-    title: "Apple Magic Keyboard White",
-    image: AppleM ,
+    title: "Apple Magic Keyboard",
     price: 2000,
-    
+    image: AppleM,
+    description:
+      "A sleek wireless keyboard designed for comfort and productivity."
   },
 
   {
     id: 2,
-    title: "Logitech MK470 Wireless Combo - Graphite - (Parallel Import)",
-    image: LogitecM,
-    price: 375,
+    title: "Gaming Mouse",
+    price: 800,
+    image:LogitecM,
+    description:
+      "A high precision gaming mouse with responsive controls."
   },
 
   {
     id: 3,
-    title: "Rapoo 9900M Wireless Keyboard & Mouse",
-    image: Rapoo99,
-    price: 375, 
+    title: "Wireless Headphones",
+    price: 1500,
+    image:Rapoo99,
+    description:
+      "Premium sound quality with long lasting battery life."
   },
 
-  {
+
+
+
+    {
     id: 4,
-    title: "Zagg Pro Wireless Keyboard 17 Uk Grey",
-    image: ZaggP,
-    price: 375,  
+    title: "Apple Magic Keyboard",
+    price: 2000,
+    image: AppleM,
+    description:
+      "A sleek wireless keyboard designed for comfort and productivity."
   },
 
   {
     id: 5,
-    title: "Lenovo AC Adapter",
-    image: LenovoU ,
-    price: 1000, 
+    title: "Gaming Mouse",
+    price: 800,
+    image:LogitecM,
+    description:
+      "A high precision gaming mouse with responsive controls."
   },
 
   {
     id: 6,
-    title: "Lenovo 65W Round Tip AC Adaptor",
-    image: Lenovo65,
-    price: 1000,
-    
-  },
-
-{
-    id: 6,
-    title: "Snug 3 In 1 Wireless Charger Stand 15W Black",
-    image: Snug3 ,
-    price: 1000,
-    
-  },
-
-{
-    id: 6,
-    title: "Logitech H540 USB Headset (Parallel Import)",
-    image:LogitechH ,
-    price: 1000,
-    
-  },
-
-{
-    id: 6,
-    title: "Logitech Brio 100 Full HD Webcam Rose",
-    image:LogitechB ,
-    price: 1000,
-    
-  },
-
-  {
-    id: 6,
-    title: "Trust GXT 609 Zoxa RGB Illuminated Speaker Set",
-    image: TrustG,
-    price: 1000,
-    
+    title: "Wireless Headphones",
+    price: 1500,
+    image:Rapoo99,
+    description:
+      "Premium sound quality with long lasting battery life."
   }
-
 ];
 
 export default products;

@@ -23,40 +23,24 @@ function NavBar() {
 
   return (
 
-    <Navbar
-      color="dark"
-      dark
-      expand="md"
-      className="shadow-sm"
-    >
+    <Navbar color="dark" dark expand="md" className="shadow-sm">
 
       <Container>
 
 
-        <NavbarBrand
-          tag={Link}
-          to="/"
-          className="fw-bold"
-        >
+        <NavbarBrand tag={Link} to="/" className="fw-bold">
           FEYATECH
         </NavbarBrand>
 
 
-        <Link
-          to="/cart"
-          className="text-white text-decoration-none position-relative"
-        >
+        <Link to="/cart" className="text-white text-decoration-none position-relative">
 
           🛒
 
 
           {cartCount > 0 && (
 
-            <Badge
-              color="danger"
-              pill
-              className="position-absolute top-0 start-100 translate-middle"
-            >
+            <Badge color="danger" pill className="position-absolute top-0 start-100 translate-middle">
               {cartCount}
             </Badge>
 

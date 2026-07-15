@@ -51,107 +51,56 @@ function Cart() {
 
         {cart.map((item) => (
 
-          <Card
-            className="mb-3 shadow-sm"
-            key={item.id}
-          >
+          <Card className="mb-3 shadow-sm" key={item.id}>
 
             <Row className="g-0">
-
-
               <Col md="3">
-
-                <CardImg
-                  src={item.image}
-                  alt={item.title}
-                  style={{
-                    height: "150px",
-                    objectFit: "cover"
-                  }}
-                />
-
+              <CardImg src={item.image} alt={item.title} style={{height: "150px", objectFit: "cover"}}/>
               </Col>
 
 
               <Col md="9">
-
-                <CardBody>
-
+              <CardBody>
                   <h4>
                     {item.title}
                   </h4>
-
-
                   <p>
                     Price: R{item.price}
                   </p>
 
 
                   <div className="d-flex align-items-center gap-2">
-
-
-                    <Button
-                      color="secondary"
-                      onClick={() =>
-                        decreaseQuantity(item.id)
-                      }
-                    >
+                    <Button color="secondary" onClick={() => decreaseQuantity(item.id) }>
                       -
                     </Button>
-
-
                     <span>
                       {item.quantity}
                     </span>
 
 
-                    <Button
-                      color="secondary"
-                      onClick={() =>
-                        increaseQuantity(item.id)
-                      }
-                    >
+                    <Button color="secondary" onClick={() => increaseQuantity(item.id) }>
                       +
                     </Button>
 
 
-                    <Button
-                      color="danger"
-                      onClick={() =>
-                        removeFromCart(item.id)
-                      }
-                    >
+                    <Button color="danger" onClick={() => removeFromCart(item.id) } >
                       Remove
                     </Button>
-
-
                   </div>
-
-
                 </CardBody>
-
               </Col>
-
-
             </Row>
-
-
           </Card>
-
-        ))}
+         ))}
 
 
         <h3 className="mt-4">
           Total: R{total}
         </h3>
 
-
-        </>
-
-      )}
-
-
-    </Container>
+</>
+ )}
+</Container>
 
   );
 }

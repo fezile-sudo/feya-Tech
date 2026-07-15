@@ -1,9 +1,36 @@
-import React, { createContext, useContext, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect
+} from "react";
+
 
 const CartContext = createContext();
 
+
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+
+
+  const [cart, setCart] = useState(() => {
+
+    const savedCart = localStorage.getItem("cart");
+
+    return savedCart
+      ? JSON.parse(savedCart)
+      : [];
+
+  });
+
+    useEffect(() => {
+      localStorage.setItem(
+      "cart",
+      JSON.stringify(cart)
+    );
+
+  }, [cart]);
+
+
 
 
   const addToCart = (product) => {
@@ -16,77 +43,42 @@ export const CartProvider = ({ children }) => {
 
 
       if (existingProduct) {
-
-        return currentCart.map((item) =>
+         return currentCart.map((item) =>
           item.id === product.id
-            ? {
-                ...item,
-                quantity: item.quantity + 1
-              }
-            : item
-        );
-
+            ? {...item, quantity: item.quantity + 1 } : item );
       }
-
-
-      return [
-        ...currentCart,
-        {
-          ...product,
-          quantity: 1
-        }
-      ];
+      return [...currentCart, {...product, quantity: 1}];
 
     });
 
   };
 
-
   const removeFromCart = (id) => {
-
-    setCart((currentCart) =>
-      currentCart.filter(
-        (item) => item.id !== id
-      )
-    );
-
-  };
+      setCart((currentCart) =>
+      currentCart.filter((item) => 
+        item.id !== id) );
+   };
 
 
   const increaseQuantity = (id) => {
-
-    setCart((currentCart) =>
+      setCart((currentCart) =>
       currentCart.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              quantity: item.quantity + 1
-            }
-          : item
-      )
-    );
+        item.id === id ? {...item, quantity: item.quantity + 1} : item) );
 
   };
 
-
   const decreaseQuantity = (id) => {
-
-    setCart((currentCart) =>
+      setCart((currentCart) =>
       currentCart.map((item) =>
-        item.id === id && item.quantity > 1
-          ? {
-              ...item,
-              quantity: item.quantity - 1
-            }
-          : item
-      )
-    );
+        item.id === id && item.quantity > 1 ? {...item, quantity: item.quantity - 1 }: item) );
 
   };
 
 
   return (
+
     <CartContext.Provider
+
       value={{
         cart,
         addToCart,
@@ -94,14 +86,19 @@ export const CartProvider = ({ children }) => {
         increaseQuantity,
         decreaseQuantity
       }}
+
     >
+
       {children}
+
     </CartContext.Provider>
+
   );
 
 };
 
-
 export const useCart = () => {
+
   return useContext(CartContext);
+
 };
