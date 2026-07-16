@@ -4,14 +4,17 @@ import React, {
   useState,
   useEffect
 } from "react";
+import { toast } from "react-toastify";
+
+
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
 
-  const [cart, setCart] = useState(() => {
+const [cart, setCart] = useState(() => {
 
-    const savedCart = localStorage.getItem("cart");
+const savedCart = localStorage.getItem("cart");
 
     return savedCart
       ? JSON.parse(savedCart)
@@ -21,59 +24,67 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
 
-    localStorage.setItem(
-      "cart",
-      JSON.stringify(cart)
-    );
+    localStorage.setItem("cart", JSON.stringify(cart) );
 
   }, [cart]);
 
-  // Add product to cart
-  const addToCart = (product, quantity = 1) => {
 
-    setCart((currentCart) => {
 
-      const existingProduct = currentCart.find(
-        (item) => item.id === product.id
-      );
+// Add product to cart
+const addToCart = (product, quantity = 1) => {
+
+  setCart((currentCart) => {
+
+  const existingProduct = currentCart.find((item) => item.id === product.id);
 
       if (existingProduct) {
 
         return currentCart.map((item) =>
-          item.id === product.id
-            ? {
-                ...item,
-                quantity: item.quantity + quantity
-              }
-            : item
-        );
+                item.id === product.id
+                ? {
+                   ...item,
+                 quantity: item.quantity + quantity
+            }
+               : item
+      );
 
-      }
+    }
 
-      return [
-        ...currentCart,
-        {
-          ...product,
-          quantity
-        }
-      ];
 
-    });
+    return [...currentCart, {...product, quantity }];
 
-  };
+  });
 
-  // Remove product
-  const removeFromCart = (id) => {
+    toast.success(
+    `${product.title} added to cart`
+  );
 
-    setCart((currentCart) =>
-      currentCart.filter((item) => item.id !== id)
+};
+
+
+// Remove product
+ const removeFromCart = (id) => {
+
+  setCart((currentCart) => {
+
+  const removedItem = currentCart.find((item) => item.id === id );
+
+  toast.info(
+      `${removedItem.title} removed`
     );
 
-  };
 
-  // Increase quantity
+    return currentCart.filter(
+      (item) => item.id !== id
+    );
+
+  });
+
+};
+
+
+// Increase quantity
   const increaseQuantity = (id) => {
-
     setCart((currentCart) =>
       currentCart.map((item) =>
         item.id === id
@@ -89,7 +100,6 @@ export const CartProvider = ({ children }) => {
 
   // Decrease quantity
   const decreaseQuantity = (id) => {
-
     setCart((currentCart) =>
       currentCart.map((item) =>
         item.id === id && item.quantity > 1
@@ -103,7 +113,8 @@ export const CartProvider = ({ children }) => {
 
   };
 
-  // Clear cart after successful checkout
+
+// Clear cart after successful checkout
   const clearCart = () => {
     setCart([]);
   };
@@ -117,16 +128,7 @@ export const CartProvider = ({ children }) => {
   return (
 
     <CartContext.Provider
-      value={{
-        cart,
-        addToCart,
-        removeFromCart,
-        increaseQuantity,
-        decreaseQuantity,
-        clearCart,
-        cartTotal
-      }}
-    >
+      value={{ cart, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart, cartTotal }}>
 
       {children}
 

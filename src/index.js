@@ -4,6 +4,7 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import { CartProvider } from "./context/CartContext";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const root = ReactDOM.createRoot(
@@ -15,7 +16,9 @@ root.render(
   <React.StrictMode>
 
     <CartProvider>
-      <App />
+      <>
+        <App />
+      </>
     </CartProvider>
 
   </React.StrictMode>

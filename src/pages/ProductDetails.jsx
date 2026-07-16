@@ -1,108 +1,143 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-
-import {
-  Container,
-  Row,
-  Col,
-  Button
-} from "reactstrap";
-
+import { useParams, Link } from "react-router-dom";
+import Reviews from "../components/products/Reviews";
+import {Container, Row, Col, Button, Badge} from "reactstrap";
 import products from "../components/products/productData";
 import { useCart } from "../context/CartContext";
 
+
 function ProductDetails() {
 
-  const { id } = useParams();
+const { id } = useParams();
 
-  const { addToCart } = useCart();
+const { addToCart } = useCart();
 
-  const product = products.find(
-    (item) => item.id === Number(id)
-  );
+const product = products.find((item) => item.id === Number(id));
 
-  const [quantity, setQuantity] = useState(1);
+const [quantity, setQuantity] = useState(1);
 
-  if (!product) {
-    return (
-      <h2>Product not found</h2>
-    );
+const [added, setAdded] = useState(false);
+
+
+if (!product) {
+      return (
+      <h2 className="text-center mt-5">Product not found</h2>
+     );
   }
 
-  const handleAddToCart = () => {
+ const handleAddToCart = () => {addToCart(product, quantity); setAdded(true);};
 
-    addToCart(product, quantity);
 
-  };
+return (
 
-  return (
+  <Container className="py-5">
+    <Row className="align-items-center">
+      <Col md="6">
+          <img src={product.image} alt={product.title} className="img-fluid rounded shadow" />
 
-    <Container className="py-5">
+      </Col>
 
-      <Row className="align-items-center">
 
-        <Col md="6">
+     <Col md="6">
+      <h1 className="fw-bold">{product.title}</h1>
 
-          <img
-            src={product.image}
-            alt={product.title}
-            className="img-fluid rounded shadow"
-          />
+        {
+            product.category && (
+                <Badge color="primary" className="mb-3" >
+                    {product.category}
+                </Badge>
+            )
+        }
 
-        </Col>
 
-        <Col md="6">
+        {
+            product.rating && (
 
-          <h1>{product.title}</h1>
+              <div className="mb-3">
 
-          <h3>R{product.price}</h3>
+                ⭐ {product.rating}
 
-          <p className="text-muted">
-            {product.description}
-          </p>
+                {
+                  product.reviews && (<span className="ms-2 text-muted">({product.reviews?.length || 0} reviews)</span>)
+
+                }
+
+              </div>
+
+            )
+
+          }
+
+
+          <h3 className="mb-3">R{product.price}</h3>
+
+          {
+            product.stock && (
+
+              <p className="text-success fw-bold"> ✓ In Stock ({product.stock} available)</p> )
+
+          }
+
+
+          <p className="text-muted">{product.description}</p>
+
 
           <div className="d-flex align-items-center gap-3 mb-4">
 
-            <Button
-              color="secondary"
-              onClick={() =>
-                setQuantity(quantity > 1 ? quantity - 1 : 1)
-              }
-            >
-              -
+
+            <Button color="secondary" onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>
+                -
             </Button>
 
-            <span className="fs-4">
-              {quantity}
-            </span>
+           <span className="fs-4 fw-bold">{quantity} </span>
 
-            <Button
-              color="secondary"
-              onClick={() =>
-                setQuantity(quantity + 1)
-              }
-            >
+
+
+
+
+            <Button color="secondary" onClick={() =>setQuantity(quantity + 1)} >
               +
             </Button>
+        </div>
 
-          </div>
-
-          <Button
-            color="dark"
-            size="lg"
-            onClick={handleAddToCart}
-          >
+          <Button color="dark" size="lg" onClick={handleAddToCart}>
             Add {quantity} to Cart
           </Button>
 
-        </Col>
 
+          {
+            added && (
+
+              <div className="mt-4">
+              <p className="text-success fw-bold"> ✓ Added to cart</p>
+
+              <div className="d-flex gap-3">
+
+
+                  <Button color="outline-dark" tag={Link} to="/" >
+                    Continue Shopping
+                  </Button>
+
+
+                  <Button color="success" tag={Link} to="/cart">
+                    View Cart
+                  </Button>
+
+              </div>
+          </div>
+
+            )
+
+          }
+
+       </Col>
       </Row>
-
     </Container>
+
 
   );
 
 }
+
 
 export default ProductDetails;

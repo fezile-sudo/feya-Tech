@@ -9,90 +9,195 @@ import LogitechH from "../../assets/images/Logitech H540.webp";
 import LogitechB from "../../assets/images/Logitech Brio.webp";
 import TrustG from "../../assets/images/Trust GXT.webp";
 
+
 const products = [
+
   {
     id: 1,
     title: "Apple Magic Keyboard",
     price: 2000,
+    category: "Keyboard",
+    stock: 10,
+    rating: 4.8,
+
+    reviews: [
+      {
+        name: "John",
+        comment:
+          "Very comfortable keyboard and excellent quality.",
+        stars: 5
+      },
+      {
+        name: "Sarah",
+        comment:
+          "Great design and easy to use.",
+        stars: 4
+      }
+    ],
+
     image: AppleM,
+
     description:
       "A sleek wireless keyboard designed for comfort and productivity."
   },
+
 
   {
     id: 2,
     title: "Gaming Mouse",
     price: 800,
-    image:LogitecM,
+    category: "Mouse",
+    stock: 15,
+    rating: 4.8,
+
+    reviews: [
+      {
+        name: "Mike",
+        comment:
+          "Very accurate and responsive for gaming.",
+        stars: 5
+      }
+    ],
+
+    image: LogitecM,
+
     description:
       "A high precision gaming mouse with responsive controls."
   },
+
 
   {
     id: 3,
     title: "Wireless Headphones",
     price: 1500,
-    image:Rapoo99,
+    category: "Audio",
+    stock: 8,
+    rating: 4.8,
+
+    reviews: [
+      {
+        name: "David",
+        comment:
+          "Sound quality is impressive.",
+        stars: 5
+      },
+      {
+        name: "Lisa",
+        comment:
+          "Battery lasts very long.",
+        stars: 4
+      }
+    ],
+
+    image: Rapoo99,
+
     description:
       "Premium sound quality with long lasting battery life."
   },
 
 
 
-
-    {
+  {
     id: 4,
     title: "Apple Magic Keyboard",
     price: 2000,
+    category: "Keyboard",
+    stock: 10,
+    rating: 4.8,
+
+    reviews: [],
+
     image: AppleM,
+
     description:
       "A sleek wireless keyboard designed for comfort and productivity."
   },
+
+
 
   {
     id: 5,
     title: "Gaming Mouse",
     price: 800,
-    image:LogitecM,
+    category: "Mouse",
+    stock: 15,
+    rating: 4.8,
+
+    reviews: [],
+
+    image: LogitecM,
+
     description:
       "A high precision gaming mouse with responsive controls."
   },
 
-  {
+    {
     id: 6,
     title: "Wireless Headphones",
     price: 1500,
-    image:Rapoo99,
+    category: "Audio",
+    stock: 8,
+    rating: 4.8,
+
+    reviews: [],
+
+    image: Rapoo99,
+
     description:
       "Premium sound quality with long lasting battery life."
   },
+
 
   {
     id: 7,
     title: "Apple Magic Keyboard",
     price: 2000,
+    category: "Keyboard",
+    stock: 10,
+    rating: 4.8,
+
+    reviews: [],
+
     image: AppleM,
+
     description:
       "A sleek wireless keyboard designed for comfort and productivity."
   },
+
 
   {
     id: 8,
     title: "Gaming Mouse",
     price: 800,
-    image:LogitecM,
+    category: "Mouse",
+    stock: 15,
+    rating: 4.8,
+
+    reviews: [],
+
+    image: LogitecM,
+
     description:
       "A high precision gaming mouse with responsive controls."
   },
+
 
   {
     id: 9,
     title: "Wireless Headphones",
     price: 1500,
-    image:Rapoo99,
+    category: "Audio",
+    stock: 8,
+    rating: 4.8,
+
+    reviews: [],
+
+    image: Rapoo99,
     description:
       "Premium sound quality with long lasting battery life."
   }
+
 ];
+
 
 export default products;
