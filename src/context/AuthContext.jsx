@@ -5,13 +5,18 @@ import React, {
   useEffect
 } from "react";
 
+
 const AuthContext = createContext();
+
+
+const API_URL = "http://localhost:5000/api";
+
 
 export const AuthProvider = ({ children }) => {
 
-const [user, setUser] = useState(() => {
+  const [user, setUser] = useState(() => {
 
-const savedUser = localStorage.getItem("user");
+    const savedUser = localStorage.getItem("user");
 
     return savedUser
       ? JSON.parse(savedUser)
@@ -19,27 +24,22 @@ const savedUser = localStorage.getItem("user");
 
   });
 
-const [users, setUsers] = useState(() => {
 
-const savedUsers = localStorage.getItem("users");
+  const [token, setToken] = useState(() => {
 
-    return savedUsers
-      ? JSON.parse(savedUsers)
-      : [];
+    return localStorage.getItem("token");
 
   });
 
-  useEffect(() => {
-
-    localStorage.setItem( "users", JSON.stringify(users) );
-
-  }, [users]);
 
   useEffect(() => {
 
     if (user) {
 
-      localStorage.setItem( "user", JSON.stringify(user));
+      localStorage.setItem(
+        "user",
+        JSON.stringify(user)
+      );
 
     } else {
 
@@ -49,64 +49,169 @@ const savedUsers = localStorage.getItem("users");
 
   }, [user]);
 
-  const register = (userData) => {
 
-  const existingUser = users.find( (u) => u.email === userData.email );
+  useEffect(() => {
 
-    if (existingUser) {
+    if (token) {
+
+      localStorage.setItem(
+        "token",
+        token
+      );
+
+    } else {
+
+      localStorage.removeItem("token");
+
+    }
+
+  }, [token]);
+
+
+  // REGISTER
+  const register = async (userData) => {
+
+    try {
+
+      const response = await fetch(
+        `${API_URL}/auth/register`,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify(userData)
+        }
+      );
+
+
+      const data = await response.json();
+
+
+      if (!response.ok) {
+
+        return {
+          success: false,
+          message: data.message || "Registration failed."
+        };
+
+      }
+
+
+      setUser(data.user);
+
+      setToken(data.token);
+
+
+      return {
+        success: true,
+        user: data.user
+      };
+
+
+    } catch (error) {
+
+      console.error(
+        "REGISTER ERROR:",
+        error
+      );
 
       return {
         success: false,
-        message: "Email already exists."
+        message: "Unable to connect to server."
       };
 
     }
 
-  const newUser = {id: Date.now(), name: userData.name, email: userData.email, password: userData.password };
-
-    setUsers([
-      ...users,
-      newUser
-    ]);
-
-    setUser(newUser);
-
-    return {
-      success: true
-    };
-
   };
 
-  const login = (email, password) => {
 
-  const existingUser = users.find((u) => u.email === email && u.password === password );
+  // LOGIN
+  const login = async (email, password) => {
 
-    if (!existingUser) {
+    try {
+
+      const response = await fetch(
+        `${API_URL}/auth/login`,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+            email,
+            password
+          })
+        }
+      );
+
+
+      const data = await response.json();
+
+
+      if (!response.ok) {
+
+        return {
+          success: false,
+          message: data.message || "Invalid email or password."
+        };
+
+      }
+
+
+      setUser(data.user);
+
+      setToken(data.token);
+
+
+      return {
+        success: true,
+        user: data.user
+      };
+
+
+    } catch (error) {
+
+      console.error(
+        "LOGIN ERROR:",
+        error
+      );
 
       return {
         success: false,
-        message: "Invalid email or password."
+        message: "Unable to connect to server."
       };
 
     }
 
-    setUser(existingUser);
-
-    return {
-      success: true
-    };
-
   };
 
+
+  // LOGOUT
   const logout = () => {
 
     setUser(null);
 
+    setToken(null);
+
   };
+
 
   return (
 
-    <AuthContext.Provider value={{user, users, register, login, logout}}>
+    <AuthContext.Provider
+      value={{
+        user,
+        token,
+        register,
+        login,
+        logout
+      }}
+    >
 
       {children}
 
@@ -115,6 +220,7 @@ const savedUsers = localStorage.getItem("users");
   );
 
 };
+
 
 export const useAuth = () => {
 

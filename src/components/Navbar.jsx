@@ -16,7 +16,6 @@ import { useWishlist } from "../context/WishlistContext";
 import { useAuth } from "../context/AuthContext";
 
 
-
 function NavBar() {
 
   const [isOpen, setIsOpen] = useState(false);
@@ -30,10 +29,14 @@ function NavBar() {
   const navigate = useNavigate();
 
 
-  const cartCount = cart.reduce((total, item) => total + item.quantity,0);
+  const cartCount = cart.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
 
   const wishlistCount = wishlist.length;
+
 
   const handleLogout = () => {
 
@@ -44,91 +47,159 @@ function NavBar() {
   };
 
 
+  return (
 
-return (
+    <Navbar color="dark" dark expand="md" className="shadow-sm" >
 
-  <Navbar color="dark" dark expand="md" className="shadow-sm">
+      <Container>
 
-  <Container>
-
-      <NavbarBrand tag={Link} to="/" className="fw-bold fs-4" >FEYATECH</NavbarBrand>
-
-      <NavbarToggler onClick={() =>setIsOpen(!isOpen)} />
-
-      <Collapse isOpen={isOpen} navbar className="justify-content-end" >
-
-      <Nav className="ms-auto align-items-center" navbar >
-
-      <NavItem><Link to="/" className="nav-link text-white">Home</Link></NavItem>
-
-      <NavItem><Link to="/" className="nav-link text-white">Shop</Link></NavItem>
-
-      <NavItem><Link to="/about" className="nav-link text-white">About</Link></NavItem>
-
-      <NavItem><Link to="/contact" className="nav-link text-white">Contact</Link></NavItem>
+        <NavbarBrand tag={Link} to="/" className="fw-bold fs-4">
+          FEYATECH
+        </NavbarBrand>
 
 
-   {
-        user ? (
+        <NavbarToggler onClick={() => setIsOpen(!isOpen)}/>
 
-        <>
 
-        <NavItem><span className="nav-link text-white"> Welcome, {user.name}</span></NavItem>
+        <Collapse isOpen={isOpen} navbar className="justify-content-end" >
 
-        <NavItem><Button color="link" className="text-white nav-link" onClick={handleLogout}>Logout</Button></NavItem>
+          <Nav className="ms-auto align-items-center" navbar>
 
-        </>
+            <NavItem>
+              <Link to="/" className="nav-link text-white">
+                Home
+              </Link>
+            </NavItem>
 
-        ) : (
 
-        <>
+            <NavItem>
+              <Link to="/about" className="nav-link text-white">
+                About
+              </Link>
+            </NavItem>
 
-        <NavItem><Link to="/login" className="nav-link text-white">Login</Link></NavItem>
 
-        <NavItem><Link to="/register" className="nav-link text-white">Register</Link></NavItem>
+            <NavItem>
+              <Link to="/contact" className="nav-link text-white">
+                Contact
+              </Link>
+            </NavItem>
 
-        </>
 
-        )
+            {
+              user ? (
 
-      }
+                <>
 
-</Nav>
+                  <NavItem>
 
-      <Link to="/wishlist" className="text-white text-decoration-none position-relative fs-4 me-3">
+                    <span className="nav-link text-white">
+                      Welcome, {user.name}
+                    </span>
 
-             ❤️
+                  </NavItem>
 
-        {
-            wishlistCount > 0 && (
 
-                <Badge color="danger" pill className="position-absolute top-0 start-100 translate-middle" >{wishlistCount}</Badge>
+                  <NavItem>
 
-          )
-        }
+                    <Link to="/profile" className="nav-link text-white">
+                      My Profile
+                    </Link>
 
-    </Link>
+                  </NavItem>
 
-    <Link to="/cart" className="text-white text-decoration-none position-relative fs-4">
 
-             🛒
-        {
-            cartCount > 0 && (
+                  <NavItem>
 
-                <Badge color="danger" pill className="position-absolute top-0 start-100 translate-middle" >{cartCount}</Badge>
+                    <Button color="link" className="text-white nav-link" onClick={handleLogout}>
+                      Logout
+                    </Button>
 
-            )
-        }
+                  </NavItem>
 
+                </>
+
+              ) : (
+
+                <>
+
+                  <NavItem>
+
+                    <Link to="/login" className="nav-link text-white">
+                      Login
+                    </Link>
+
+                  </NavItem>
+
+
+                  <NavItem>
+
+                    <Link to="/register" className="nav-link text-white">
+                      Register
+                    </Link>
+
+                  </NavItem>
+
+                </>
+
+              )
+
+            }
+
+          </Nav>
+
+
+          <Link
+            to="/wishlist"
+            className="text-white text-decoration-none position-relative fs-4 me-3"
+          >
+
+            ❤️
+
+            {
+              wishlistCount > 0 && (
+
+                <Badge
+                  color="danger"
+                  pill
+                  className="position-absolute top-0 start-100 translate-middle"
+                >
+                  {wishlistCount}
+                </Badge>
+
+              )
+            }
 
           </Link>
 
+
+          <Link to="/cart" className="text-white text-decoration-none position-relative fs-4">
+               🛒
+
+            {
+              cartCount > 0 && (
+
+                <Badge
+                  color="danger"
+                  pill
+                  className="position-absolute top-0 start-100 translate-middle"
+                >
+                  {cartCount}
+                </Badge>
+
+              )
+            }
+
+          </Link>
+
+
         </Collapse>
 
-     </Container>
+      </Container>
 
-  </Navbar>
-);
+    </Navbar>
+
+  );
 
 }
 

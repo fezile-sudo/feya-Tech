@@ -1,57 +1,79 @@
-import React, { useState } from "react";
-import {Container, Card, CardBody, Form, FormGroup, Label, Input, Button} from "reactstrap";
+import React from "react";
+import {
+  Container,
+  Card,
+  CardBody
+} from "reactstrap";
 
 
 function Contact() {
 
-const [messageSent, setMessageSent] = useState(false);
-
-const handleSubmit = (e) => {
-
-    e.preventDefault();
-
-    setMessageSent(true);
-
-  };
-
-
-
   return (
+
     <Container className="py-5">
-        <Card className="shadow">
-        <CardBody>
 
-        <h1 className="fw-bold mb-4 text-center"> Contact Us</h1>
+      <Card className="shadow">
 
-           {
-            messageSent && (<p className="text-success text-center fw-bold">Message sent successfully! </p> )
-          }
+        <CardBody className="text-center">
 
-      <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label>Name</Label>
-           <Input required />
-        </FormGroup>
+          <h1 className="fw-bold mb-4">
+            Contact Us
+          </h1>
 
 
-        <FormGroup>
-          <Label>Email</Label>
-            <Input type="email"required />
-        </FormGroup>
-
-        <FormGroup>
-          <Label>Message</Label>
-            <Input type="textarea" rows="5" required/>
-        </FormGroup>
+          <p className="text-muted mb-4">
+            Have a question about FeyaTech or our products?
+            We'd be happy to hear from you.
+          </p>
 
 
+          <div className="mb-4">
 
-            <Button color="dark">Send Message</Button>
+            <h5 className="fw-bold">
+              Email
+            </h5>
 
-      </Form>
-    </CardBody>
-  </Card>
-</Container>
+            <p className="mb-0">
+              info@feyatech.com
+            </p>
+
+          </div>
+
+
+          <div className="mb-4">
+
+            <h5 className="fw-bold">
+              Phone
+            </h5>
+
+            <p className="mb-0">
+              0781780501
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <h5 className="fw-bold">
+              Business Hours
+            </h5>
+
+            <p className="mb-0">
+              Monday – Friday: 08:00 – 17:00
+            </p>
+
+            <p className="mb-0">
+              Saturday: 09:00 – 13:00
+            </p>
+
+          </div>
+
+        </CardBody>
+
+      </Card>
+
+    </Container>
 
   );
 
