@@ -233,7 +233,7 @@ Installation
 
 Clone the repository and navigate into the project directory:
 
-git clone <your-repository-url>
+git clone https://github.com/fezile-sudo/feya-Tech.git
 cd feyatech
 
 

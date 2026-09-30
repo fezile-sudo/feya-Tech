@@ -11,9 +11,22 @@ import {
 import { useCart } from "../context/CartContext";
 
 import AppleM from "../assets/images/Apple Magic keyboard.webp";
-import LenovoUSB from "../assets/images/Lenovo USB-C.webp";
+import Gaming from "../assets/images/Gaming_.jpg";
 import LogitechBrio from "../assets/images/Logitech Brio.webp";
 
+import Genius  from "../assets/images/Genius KM-8101 2.4Ghz.jpg";
+import Xceed  from "../assets/images/Xceed Byte Black Wired.webp";
+import Wolf  from "../assets/images/T-Wolf T30.jpg";
+import Dell  from "../assets/images/Dell KM3322W.webp";
+
+import Volkano  from "../assets/images/Volkano Slick Series.jpg";
+import Keychron from "../assets/images/Keychron G3.webp";
+import Xiaomi  from "../assets/images/Xiaomi Dual.webp";
+
+import JBL  from "../assets/images/JBL T720.webp";
+import GC  from "../assets/images/GC Gaming.webp";
+import Redragon  from "../assets/images/Redragon.webp";
+import B39  from "../assets/images/B39 Bluetooth.webp";
 
 function ProductDetails() {
 
@@ -34,8 +47,19 @@ function ProductDetails() {
 
   const imageMap = {
   "Apple Magic keyboard.webp": AppleM,
-  "Lenovo USB-C.webp": LenovoUSB,
-  "Logitech Brio.webp": LogitechBrio
+  "Gaming_.jpg": Gaming,
+  "Logitech Brio.webp": LogitechBrio,
+  "Genius KM-8101 2.4Ghz.jpg": Genius,
+  "Xceed Byte Black Wired.webp": Xceed,
+  "T-Wolf T30.jpg": Wolf,
+  "Dell KM3322W.webp": Dell,
+  "Volkano Slick Series.jpg": Volkano,
+  "Keychron G3.webp":Keychron, 
+  "Xiaomi Dual.webp": Xiaomi,
+  "JBL T720.webp": JBL,
+  "GC Gaming.webp": GC,
+  "Redragon.webp": Redragon,
+  "B39 Bluetooth.webp": B39
 };
 
 
@@ -142,7 +166,7 @@ function ProductDetails() {
 
       <Row className="align-items-center">
 
-        <Col md="6">
+        <Col md="4">
 
           {productImage ? (
 
