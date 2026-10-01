@@ -10,6 +10,9 @@ import {
 
 import { useCart } from "../context/CartContext";
 
+import API_URL from "../config/api";
+
+
 import AppleM from "../assets/images/Apple Magic keyboard.webp";
 import Gaming from "../assets/images/Gaming_.jpg";
 import LogitechBrio from "../assets/images/Logitech Brio.webp";
@@ -71,7 +74,8 @@ function ProductDetails() {
       try {
 
         const response = await fetch(
-          `http://localhost:5000/api/products/${id}`
+          `${API_URL}/products/${id}`
+
         );
 
 

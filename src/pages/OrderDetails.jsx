@@ -13,7 +13,8 @@ import {
 import { useAuth } from "../context/AuthContext";
 
 
-const API_URL = "http://localhost:5000/api";
+import API_URL from "../config/api";
+
 
 
 function OrderDetails() {

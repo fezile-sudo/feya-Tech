@@ -10,6 +10,8 @@ import {
 
 import ProductCard from "./ProductCard";
 
+import API_URL from "../../config/api";
+
 import "./product.css";
 
 
@@ -37,7 +39,8 @@ function Products() {
       try {
 
         const response = await fetch(
-          "http://localhost:5000/api/products"
+          `${API_URL}/products`
+
         );
 
         if (!response.ok) {

@@ -10,7 +10,8 @@ import PaymentOptions from "../components/checkout/PaymentOptions";
 import OrderSummary from "../components/checkout/OrderSummary";
 
 
-const API_URL = "http://localhost:5000/api";
+import API_URL from "../config/api";
+
 
 
 function Checkout() {
