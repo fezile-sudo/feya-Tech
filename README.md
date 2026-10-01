@@ -1,344 +1,439 @@
-FeyaTech — Ecommerce Web Application
+# FeyaTech — Full-Stack Ecommerce Application
 
-FeyaTech is a full-stack ecommerce web application built as a portfolio project. The application allows users to browse products, view individual product details, add products to a wishlist or shopping cart, manage cart quantities, and proceed through the checkout flow.
+FeyaTech is a full-stack ecommerce web application developed as a software development portfolio project.
 
-The project was built with a focus on creating a practical ecommerce experience while demonstrating frontend development, backend API integration, database management, state management, and responsive UI development.
+The application allows users to browse products, view product details, manage a shopping cart and wishlist, register and log in, and proceed through the checkout process.
 
-Features
-Product Browsing
+The project demonstrates frontend development, REST API integration, PostgreSQL database management, authentication, state management, responsive UI development, and deployment.
 
-View available products on the home page.
+## Live Application
 
-Display product information including name, price, category, stock, description, and image.
+Frontend:
 
-Open an individual product to view its details.
+https://feya-tech.onrender.com
 
-Product information is retrieved from the backend rather than being hardcoded in the frontend.
+Backend API:
 
-Product Details
+https://feyatech-api.onrender.com
 
-Each product has a dedicated details page where users can:
+Health check:
 
-View the product image and information.
+https://feyatech-api.onrender.com/api/health
 
-See the current price and stock availability.
+## Features
 
-Adjust the quantity before adding an item to the cart.
+### Product Browsing
 
-Add products directly to the shopping cart.
+- Browse products retrieved from the backend API.
+- View product names, descriptions, prices, categories, stock levels, and images.
+- Open individual product detail pages.
+- Product information is stored in PostgreSQL rather than hardcoded in the frontend.
 
-Continue shopping or navigate to the cart after adding a product.
+### Product Details
 
-Shopping Cart
+Users can:
 
-The shopping cart allows users to:
+- View product information and images.
+- See current price and stock availability.
+- Select a quantity.
+- Add products to the shopping cart.
+- Continue shopping or navigate to the cart.
 
-View all selected products.
+### Shopping Cart
 
-Increase or decrease product quantities.
+The shopping cart supports:
 
-Remove products from the cart.
+- Adding products.
+- Increasing and decreasing quantities.
+- Removing products.
+- Viewing product subtotals.
+- Calculating the cart subtotal.
+- Calculating VAT at 15%.
+- Displaying the final order total.
+- Proceeding to checkout.
 
-View individual product subtotals.
+### Wishlist
 
-View the cart subtotal.
+Users can:
 
-Calculate VAT at 15%.
+- Add products to a wishlist.
+- View saved products.
+- Remove products from the wishlist.
+- Move wishlist products to the shopping cart.
 
-View the final order total.
+### User Authentication
 
-Continue to the checkout page.
+The application includes:
 
-Wishlist
+- User registration.
+- User login.
+- Password hashing.
+- JWT-based authentication.
+- Protected backend functionality.
 
-Users can add products to their wishlist and:
+### Checkout and Orders
 
-View saved products.
+The checkout flow collects customer and delivery information and allows users to proceed with placing an order.
 
-Remove products from the wishlist.
+Orders are stored in PostgreSQL together with their associated order items.
 
-Move wishlist products to the shopping cart.
+### Product Images
 
-Checkout
+Product image filenames are stored in the database and mapped to the corresponding images used by the React application.
 
-The application includes a checkout flow where users can proceed from their cart toward completing an order.
+This keeps the product information database-driven while allowing the frontend to display the correct product image.
 
-Product Images
+## Technology Stack
 
-Product image filenames are stored in the PostgreSQL database and matched with the corresponding images used by the React application.
+### Frontend
 
-This keeps product information in the database while allowing the frontend to display the appropriate product image.
+- React
+- React Router
+- Reactstrap
+- Bootstrap
+- JavaScript
+- CSS
+- React Context
 
-Technology Stack
-Frontend
+### Backend
 
-React
+- Node.js
+- Express.js
+- REST API
+- JSON Web Tokens
+- bcrypt
+- CORS
 
-React Router
+### Database
 
-Reactstrap
+- PostgreSQL
+- Neon PostgreSQL
 
-Bootstrap
+### Development and Deployment
 
-JavaScript
+- Visual Studio Code
+- Git
+- GitHub
+- npm
+- Render
 
-CSS
+## Application Architecture
 
-Backend
+The application follows a frontend, backend, and database architecture:
 
-Node.js
-
-Express.js
-
-REST API
-
-Database
-
-PostgreSQL
-
-Development Tools
-
-Visual Studio Code
-
-Git
-
-GitHub
-
-npm
-
-Application Architecture
-
-The application follows a frontend/backend/database structure:
-
+text
 React Frontend
-      │
-      │ HTTP Requests
-      ▼
+      |
+      | HTTP Requests
+      v
 Node.js / Express API
-      │
-      │ SQL Queries
-      ▼
-PostgreSQL Database
+      |
+      | SQL Queries
+      v
+PostgreSQL / Neon Database
 
+The React frontend communicates with the Express backend through REST API endpoints.
 
-The React frontend communicates with the Express backend through API endpoints. The backend handles communication with PostgreSQL and returns product and application data to the frontend.
+The backend handles authentication, product requests, order processing, and communication with PostgreSQL.
 
-This separation keeps the frontend responsible for the user interface and application state while the backend handles API requests and database operations.
+The database stores users, products, categories, carts, wishlists, reviews, orders, and order items.
 
 Database
+PostgreSQL is used to store the application's ecommerce data.
 
-PostgreSQL is used to store the application's product data and other ecommerce-related information.
+The database contains tables for:
 
-Product records include information such as:
+Users
+
+Categories
+
+Products
+
+Cart items
+
+Wishlist items
+
+Reviews
+
+Orders
+
+Order items
+
+Products
+Product records include:
 
 Product ID
 
 Product title
 
-Price
-
 Description
 
-Category
+Price
 
 Stock
 
+Category
+
 Image filename
+
+Creation date
 
 The image_url field stores the filename associated with each product.
 
-For example:
-
-Apple Magic keyboard.webp
-Lenovo USB-C.webp
-Logitech Brio.webp
-
-
-The corresponding images are stored in the application's image directory.
-
-This allows the product data and product images to remain connected through the database record.
+Example: Apple Magic keyboard.webp
+JBL T720.webp
+Keychron G3.webp
+B39 Bluetooth.webp
 
 State Management
-
-React Context is used to manage application-wide ecommerce state.
+React Context is used for application-wide ecommerce state.
 
 Cart Context
-
 The Cart Context handles:
 
-Adding products to the cart
+Adding products.
 
-Removing products
+Removing products.
 
-Increasing quantities
+Increasing quantities.
 
-Decreasing quantities
+Decreasing quantities.
 
-Calculating the cart total
+Calculating cart totals.
 
 Wishlist Context
-
 The Wishlist Context handles:
 
-Adding products to the wishlist
+Adding products.
 
-Removing products
+Removing products.
 
-Checking whether a product is already in the wishlist
+Checking whether a product is already in the wishlist.
 
-Using React Context allows this information to be accessed by different parts of the application without having to pass the same data through multiple levels of components.
+Moving wishlist products to the cart.
+
+Using React Context allows shared ecommerce state to be accessed across different parts of the application without passing the same data through multiple levels of components.
 
 Project Structure
-
-A simplified version of the project structure is:
-
+A simplified project structure is:
 feyatech/
+|
+├── backend/
+│   ├── database/
+│   │   └── schema.sql
+│   │
+│   ├── src/
+│   │   ├── config/
+│   │   │   └── db.js
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── routes/
+│   │   └── server.js
+│   │
+│   ├── .gitignore
+│   └── package.json
 │
 ├── public/
 │
 ├── src/
 │   ├── assets/
 │   │   └── images/
-│   │
 │   ├── components/
-│   │   └── products/
-│   │
 │   ├── context/
-│   │   ├── CartContext
-│   │   └── WishlistContext
-│   │
 │   ├── pages/
-│   │   ├── ProductDetails
-│   │   ├── Wishlist
-│   │   ├── Cart
-│   │   └── Checkout
-│   │
+│   ├── config/
+│   │   └── api.js
 │   └── App.js
 │
+├── .env
+├── .env.example
+├── .gitignore
 ├── package.json
 └── README.md
 
 Getting Started
 Prerequisites
-
-Before running the project, make sure you have installed:
+Install the following:
 
 Node.js
 
 npm
 
-PostgreSQL
+PostgreSQL, or access to a PostgreSQL-compatible database such as Neon
 
-Installation
-
-Clone the repository and navigate into the project directory:
-
+Clone the Repository
 git clone https://github.com/fezile-sudo/feya-Tech.git
-cd feyatech
+cd feya-Tech
 
+Install Frontend Dependencies
+From the project root:npm install
 
-Install the frontend dependencies:
-
-npm install
-
-
-Install the backend dependencies if the backend is located in a separate directory:
-
+Install Backend Dependencies
+cd backend
 npm install
 
 Environment Variables
+The backend requires environment variables for database access and authentication.
 
-Create a .env file for the backend database configuration.
-
-Example:
-
-DB_HOST=localhost
+Create:backend/.env
+Example: DB_HOST=your_database_host
 DB_PORT=5432
 DB_NAME=your_database_name
-DB_USER=postgres
-DB_PASSWORD=your_password
+DB_USER=your_database_user
+DB_PASSWORD=your_database_password
+JWT_SECRET=your_jwt_secret
+PORT=5000
 
+The frontend uses:REACT_APP_API_URL=http://localhost:5000/api
 
-Do not commit your actual database password or other private credentials to GitHub.
+For production, the frontend API URL should point to the deployed backend API.
 
-Running the Application
+Do not commit .env files or private credentials to GitHub.
 
-Start the backend server and React development server using the project's configured commands.
+A template is provided in: .env.example
 
-The application will then be available through the local development server.
+Running Locally
+Start the Backend
+From the backend directory: npm start
+
+The backend runs on: http://localhost:5000
+
+Start the Frontend
+From the project root: npm start
+
+The React development server normally runs on: http://localhost:3000
+
+API
+The backend exposes REST API endpoints for the application's main functionality.
+
+Examples include: GET /api/health
+GET /api/products
+POST /api/auth/register
+POST /api/auth/login
+
+The API health endpoint can be used to verify that the backend and database are connected successfully.
+
+Deployment
+The application is deployed using Render.
+
+The production architecture consists of:
+
+ Render Static Site
+        |
+        | HTTPS API Requests
+        v
+Render Web Service
+        |
+        | PostgreSQL Connection
+        v
+Neon PostgreSQL
+
+The frontend is deployed as a Render Static Site.
+
+The Express backend is deployed as a Render Web Service.
+
+The PostgreSQL database is hosted using Neon.
+
+Production environment variables are configured through the Render dashboard rather than committed to the repository.
+
+Security
+Environment files containing passwords, database credentials, and JWT secrets are excluded from Git using .gitignore.
+
+The backend also uses:
+
+Password hashing with bcrypt.
+
+JWT authentication.
+
+CORS configuration.
+
+Environment variables for sensitive configuration.
+
+The production frontend is configured as the allowed CORS origin for the API.
 
 Key Development Challenges
-
 One of the challenges during development was handling product images while keeping product information database-driven.
 
-The application initially experimented with different approaches to loading images. The final implementation uses the project's Webpack-compatible image imports and maps the filenames stored in the database to the corresponding product images.
+The application initially experimented with different approaches to loading images. The final implementation maps image filenames stored in PostgreSQL to the corresponding images used by the React application.
 
-Another important part of the project was managing shared cart and wishlist state across different pages. React Context was used so that changes made on one page are reflected throughout the application.
+Another important part of the project was managing shared cart and wishlist state across multiple pages. React Context was used so that changes made on one page are reflected throughout the application.
 
-The project also required troubleshooting the interaction between the React frontend, backend API, and PostgreSQL database to ensure that product information displayed consistently throughout the application.
+The project also required troubleshooting the interaction between the React frontend, Express backend, and PostgreSQL database.
 
-Future Improvements
-
-The current version focuses on the core ecommerce experience. Possible future improvements include:
-
-User authentication and account management
-
-Product reviews and star ratings
-
-Order history
-
-Admin dashboard for managing products
-
-Product search and filtering
-
-Payment gateway integration
-
-Order confirmation emails
-
-Improved product image management
-
-Persistent cart and wishlist data for authenticated users
-
-The database structure already provides a foundation for extending the application with additional ecommerce functionality such as product reviews.
+During deployment, the local PostgreSQL database was migrated to Neon PostgreSQL and the backend was configured to connect securely to the production database.
 
 What I Learned
-
 Building FeyaTech provided practical experience with:
 
-Building reusable React components
+Building reusable React components.
 
-React Router and multi-page application navigation
+React Router and multi-page navigation.
 
-Managing shared state with React Context
+Managing shared state with React Context.
 
-Connecting a React frontend to a REST API
+Connecting a React frontend to a REST API.
 
-Working with Node.js and Express
+Building APIs with Node.js and Express.
 
-Creating and querying PostgreSQL databases
+Creating and querying PostgreSQL databases.
 
-Handling database-driven product information
+Migrating database data to a hosted PostgreSQL service.
 
-Managing product images
+Implementing user authentication.
 
-Implementing shopping cart functionality
+Using JWT authentication.
 
-Implementing wishlist functionality
+Hashing passwords securely.
 
-Calculating order totals and VAT
+Handling database-driven product information.
 
-Debugging frontend and backend integration issues
+Managing product images.
 
-Using Git and GitHub throughout development
+Implementing shopping cart functionality.
+
+Implementing wishlist functionality.
+
+Calculating order totals and VAT.
+
+Debugging frontend and backend integration issues.
+
+Using Git and GitHub.
+
+Deploying a full-stack application using Render and Neon.
+
+Future Improvements
+Possible future improvements include:
+
+Product reviews and star ratings.
+
+Order history.
+
+Admin dashboard for managing products.
+
+Product search and filtering.
+
+Payment gateway integration.
+
+Order confirmation emails.
+
+Improved product image management.
+
+Persistent cart and wishlist data for authenticated users.
+
+Additional account management features.
+
+The existing database structure provides a foundation for extending the application with additional ecommerce functionality such as reviews, order history, and administrative features.
 
 Project Status
-
 Completed — Portfolio Project
 
-The current version contains the core ecommerce functionality required for the project. Additional features are documented under Future Improvements rather than being included in the current scope.
+The current version contains the core ecommerce functionality required for the project.
+
+The application is deployed and connected to a production PostgreSQL database.
+
+Additional features are documented under Future Improvements rather than being included in the current scope.
 
 Author
-
 Fezile Gulwa
 
-This project was developed as part of my software development portfolio to demonstrate full-stack web development skills using React, Node.js, Express, and PostgreSQL.
+This project was developed as part of my software development portfolio to demonstrate full-stack web development skills.

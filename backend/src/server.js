@@ -15,7 +15,12 @@ const orderRoutes = require("./routes/orderRoutes");
 const app = express();
 
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://feya-tech.onrender.com",
+  })
+);
+
 
 app.use(express.json());
 
